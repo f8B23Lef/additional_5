@@ -1,17 +1,16 @@
 module.exports = function check(str, bracketsConfig) {
 
-  var openArr = [];
-  var closeArr = [];
+  const openArr = [];
+  const closeArr = [];
   
-  for(var i = 0; i < bracketsConfig.length; i++) {
+  for(let i = 0, len = bracketsConfig.length; i < len; i++) {
     openArr.push(bracketsConfig[i][0]);
     closeArr.push(bracketsConfig[i][1]);
   }	
 
-  var stack  = [];
-  var matchOpenBracket;
+  const stack  = [];
 	
-  for(var k = 0; k < str.length; k++) {
+  for(let k = 0, len = str.length; k < len; k++) {
 
     if(openArr.includes(str.charAt(k)) && !closeArr.includes(str.charAt(k))) { //opening and non-closing bracket
 
@@ -29,7 +28,7 @@ module.exports = function check(str, bracketsConfig) {
 
     } else if(closeArr.includes(str.charAt(k))) { //closing bracket
 
-      matchOpenBracket = openArr[closeArr.indexOf(str.charAt(k))];  
+      const matchOpenBracket = openArr[closeArr.indexOf(str.charAt(k))];  
         
       if(stack.length == 0 || (stack.pop() != matchOpenBracket)) {
         return false;
